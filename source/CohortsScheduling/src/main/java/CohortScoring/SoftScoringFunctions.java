@@ -24,7 +24,7 @@ public class SoftScoringFunctions {
         return score;
     }
     
-    private static int dayScores(List<Cohort> cohorts) {
+    protected static int dayScores(List<Cohort> cohorts) {
     	int score = 0;
     	List<List<Section>> days = new ArrayList<>(5);
 		for(int i = 0; i < 5; i++) {
@@ -55,7 +55,7 @@ public class SoftScoringFunctions {
 		return score;
     }
     
-    private static int tooMuchWaitTime(List<List<Section>> days) {
+    protected static int tooMuchWaitTime(List<List<Section>> days) {
 		int score = 0;
     	for(List<Section> L : days)
 			for(int i = 1; i<L.size() ;i++) 
@@ -65,7 +65,7 @@ public class SoftScoringFunctions {
 		return score * score * -1;
 	}
 
-	private static int moreThanThreeInADay(List<Cohort> cohorts) {
+	protected static int moreThanThreeInADay(List<Cohort> cohorts) {
 		int score = 0;
 		for(Cohort c: cohorts) {
 			int[] dayCounts = new int[5];
@@ -95,7 +95,7 @@ public class SoftScoringFunctions {
 	
 	
 
-	private static int backToBackToBack(List<List<Section>> days) {
+	protected static int backToBackToBack(List<List<Section>> days) {
 		int score = 0;
 			for(List<Section> L: days) {
 				for(int i = 1; i < L.size(); i++) {
@@ -107,7 +107,7 @@ public class SoftScoringFunctions {
 		return score;
 	}
 
-	private static int assignmentsPastSeven(CohortSolution s) {
+	protected static int assignmentsPastSeven(CohortSolution s) {
 		int count = 0;
 		
 		for(CohortSectionAssignment c : s.getAssignments()) {
@@ -117,7 +117,7 @@ public class SoftScoringFunctions {
 		return count;
 	}
 
-	private static List<Cohort> putAssignmentsInCohorts(CohortSolution solution) {
+	protected static List<Cohort> putAssignmentsInCohorts(CohortSolution solution) {
 		Map<String,List<Section>> sectMap = new HashMap<>();
 		for(CohortSectionAssignment csa: solution.getAssignments()) {
 			if(sectMap.containsKey(csa.getMyCohort().getName())) {
@@ -141,7 +141,7 @@ public class SoftScoringFunctions {
 		return cohorts;
 	}
 	
-	private static int wrongSections(CohortSolution s) {
+	protected static int wrongSections(CohortSolution s) {
 		int i = 0;
 		for(CohortSectionAssignment csa:s.getAssignments()) {
 			if(csa.getSectionType()==null || csa.getSectionType().equals("Section")) {
