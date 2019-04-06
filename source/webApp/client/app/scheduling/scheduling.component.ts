@@ -7,6 +7,7 @@ import { Schedule } from '../shared/models/schedule.model';
 import { CohortService } from '../services/cohort.service';
 import { Cohort } from '../shared/models/cohort.model';
 import schedule from '../../../server/models/schedule';
+import { AssignmentService } from '../services/assignment.service';
 
 /*
 MIT License
@@ -53,6 +54,7 @@ export class SchedulingComponent implements OnInit {
   file:File = null;
 
   constructor(private schedulingService: SchedulingService,
+              private assignmentSevice:AssignmentService,
               private cohortService: CohortService,
               private formBuilder: FormBuilder,
               public toast: ToastComponent) { }
@@ -187,10 +189,21 @@ export class SchedulingComponent implements OnInit {
           const pos = this.schedules.map(elem => elem._id).indexOf(schedule._id);
           this.schedules.splice(pos, 1);
           this.toast.setMessage('item deleted successfully.', 'success');
+          this.deleteAssignments(schedule.name);
         },
         error => console.log(error)
       );
     }
+  }
+
+  deleteAssignments(schName:string){
+    this.assignmentSevice.getAssignments(schName).subscribe((data)=>{
+      data.forEach(element =>{
+        this.assignmentSevice.deleteAssignment(element).subscribe(data=>{
+          
+        });
+      })
+    })
   }
 
 }

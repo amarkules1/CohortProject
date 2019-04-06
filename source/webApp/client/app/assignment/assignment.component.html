@@ -2,6 +2,7 @@
 
 <app-toast [message]="toast.message"></app-toast>
 <div *ngIf="!isLoading">
+  <div *ngIf="assignmentGroups==null||assignmentGroups.length==0">No results yet, check back in a few minutes.</div>
   <div class="card mb-3" *ngFor="let ag of assignmentGroups">
     <h4 class="card-header">Assignments for {{ag.cohortName}}</h4>
     <div class="card-body">

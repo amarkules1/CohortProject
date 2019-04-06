@@ -36,4 +36,8 @@ export class AssignmentService {
   getAssignments(id:string): Observable<Assignment[]> {
     return this.http.get<Assignment[]>('/api/assignments/'+id);
   }
+
+  deleteAssignment(assignment:Assignment){
+    return this.http.delete('/api/assignment/'+assignment._id,{ responseType: 'text' })
+  }
 }
