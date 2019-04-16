@@ -150,7 +150,7 @@ public class SoftScoringFunctions {
 			}
 			}
 			if(csa.getSectionType().equals("Title")) {
-				if(csa.getAssignment().getTitle() != null && !csa.getAssignment().getTitle().contains(" HC")) {
+				if(csa.getAssignment().getTitle() != null && !csa.getAssignment().getTitle().contains("HC")) {
 					i-=2;
 				}
 			}
